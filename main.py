@@ -10,14 +10,9 @@ import sqlite3
 conn = sqlite3.connect("example.db")  # This creates or opens the file "example.db" as a database
 c = conn.cursor()
 
-
-"""
-Some users and an administrator have been provided. You can use them or create your own.
-These are printed at the start of the program to show the values for later testing.
-Uncomment the two following lines to erase the database and start fresh.
-"""
-#c.execute("DROP TABLE IF EXISTS user")
-#c.execute("DROP TABLE IF EXISTS administrator")
+#This code erase the table values everytime the program is run.
+c.execute("DROP TABLE IF EXISTS user")
+c.execute("DROP TABLE IF EXISTS administrator")
 
 
 #All users need a username, account number, password, and balance.
@@ -40,13 +35,24 @@ CREATE TABLE IF NOT EXISTS administrator (
 
 
 
+# Some users and an administrator have been provided. You can use them or create your own.
+# These are printed at the start of the program to show the values for later testing.
+
+c.execute("INSERT INTO user VALUES"
+"('Nala', 1234567, 8746, 1000453),"
+"('Candy', 7654321, 6748, 2453),"
+"('Arielle', 3457995, 2432, 5645),"
+"('Jake', 2345678, 5678, 30034),"
+"('Devan', 2345678, 5678, 30034)")
+
+c.execute("INSERT INTO administrator VALUES"
+"('Admin', 5768),"
+"('Boss', 9873)")
 
 
-
-
-
-
+# Save the changes
 conn.commit()
+
 
 
 
